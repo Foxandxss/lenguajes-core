@@ -10,7 +10,6 @@ import { Lenguaje, LenguajeService } from '../../shared/lenguaje.service'
 export class LenguajeListComponent implements OnInit {
 
   lenguajes: Lenguaje[] = [];
-  logo = 'dist/csharp.jpg';
 
   constructor(private lengService: LenguajeService) { }
 

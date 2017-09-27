@@ -10,6 +10,7 @@ import { LenguajeListComponent } from './components/Lenguajes/lenguaje-list.comp
 import { LenguajeComponent } from './components/Lenguajes/lenguaje.component';
 import { RatingPipe } from './shared/rating.pipe';
 import { LenguajeService } from './shared/lenguaje.service';
+import { AdminModule } from './components/admin/admin.module';
 
 @NgModule({
     declarations: [
@@ -24,10 +25,11 @@ import { LenguajeService } from './shared/lenguaje.service';
         CommonModule,
         HttpModule,
         FormsModule,
+        AdminModule,
         RouterModule.forRoot([
             { path: '', redirectTo: '/lenguajes', pathMatch: 'full' },
             { path: 'lenguajes', component: LenguajeListComponent },
-            { path: 'lenguajes/:id', component: LenguajeDetailsComponent }
+            { path: 'lenguajes/:id', component: LenguajeDetailsComponent },
         ])
     ]
 })
