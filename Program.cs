@@ -19,6 +19,13 @@ namespace lenguajes
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel(options =>
+                {
+                    // This overrides are to show the "Fast 3G" mode
+                    // on chrome without a timeout
+                    options.Limits.MinResponseDataRate = null;
+                    options.Limits.MinRequestBodyDataRate = null;
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const AotPlugin = require('@ngtools/webpack').AotPlugin;
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
     // Configuration in common to both client-side and server-side bundles
@@ -26,7 +27,12 @@ module.exports = (env) => {
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
             ]
         },
-        plugins: [new CheckerPlugin()]
+        plugins: [
+            new CheckerPlugin(),
+            new CopyWebpackPlugin([
+                { from: path.join(__dirname, 'ClientApp/assets/images'), to: path.join(__dirname, 'wwwroot/dist') }
+            ])
+        ]
     };
 
     // Configuration for client-side bundle suitable for running in browsers

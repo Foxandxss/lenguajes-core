@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using lenguajes.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace lenguajes
 {
     public class Startup
@@ -22,12 +25,19 @@ namespace lenguajes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<LenguajesDbContext>(options => 
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
+            });
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, LenguajesDbContext context)
         {
+            DbInitializer.Initialize(context);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

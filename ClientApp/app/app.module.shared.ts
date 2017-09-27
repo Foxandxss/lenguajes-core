@@ -5,22 +5,30 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
+import { LenguajeDetailsComponent } from './components/Lenguajes/lenguaje-details.component';
+import { LenguajeListComponent } from './components/Lenguajes/lenguaje-list.component';
+import { LenguajeComponent } from './components/Lenguajes/lenguaje.component';
+import { RatingPipe } from './shared/rating.pipe';
+import { LenguajeService } from './shared/lenguaje.service';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LenguajeListComponent,
+        LenguajeDetailsComponent,
+        LenguajeComponent,
+        RatingPipe
     ],
+    providers: [ LenguajeService ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
-        // RouterModule.forRoot([
-        //     { path: '', redirectTo: 'home', pathMatch: 'full' },
-        //     { path: 'home', component: HomeComponent },
-        //     { path: 'counter', component: CounterComponent },
-        //     { path: 'fetch-data', component: FetchDataComponent },
-        //     { path: '**', redirectTo: 'home' }
-        // ])
+        RouterModule.forRoot([
+            { path: '', redirectTo: '/lenguajes', pathMatch: 'full' },
+            { path: 'lenguajes', component: LenguajeListComponent },
+            { path: 'lenguajes/:id', component: LenguajeDetailsComponent }
+        ])
     ]
 })
 export class AppModuleShared {
