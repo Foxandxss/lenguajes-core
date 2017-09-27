@@ -10,7 +10,7 @@ import { AdminAddComponent } from './add.component';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'admin', component: AdminAddComponent }
+      { path: '', component: AdminAddComponent }
     ])
   ],
   declarations: [ AdminAddComponent ]
