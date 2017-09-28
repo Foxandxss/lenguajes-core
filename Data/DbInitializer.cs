@@ -37,7 +37,7 @@ namespace lenguajes.Data
                 },
                 new Lenguaje() {
                     Name = "C#",
-                    Logo = "csharp.png",
+                    Logo = "csharp.jpg",
                     Rating = 3
                 }
             };
